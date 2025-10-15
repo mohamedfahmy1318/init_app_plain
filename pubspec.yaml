@@ -1,0 +1,160 @@
+name: init_app_flutter
+description: "A reusable core Flutter application with essential packages and architecture."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # ==================== Core UI ====================
+  cupertino_icons: ^1.0.8
+  flutter_screenutil: ^5.5.0
+  google_fonts: ^6.2.1
+
+  # ==================== State Management ====================
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
+
+  # ==================== Dependency Injection ====================
+  get_it: ^8.2.0
+
+  # ==================== Navigation ====================
+  go_router: ^16.2.4
+
+  # ==================== Networking ====================
+  dio: ^5.5.0
+  awesome_dio_interceptor: ^1.3.0
+  flutter_offline: ^5.0.0
+
+  # ==================== Firebase ====================
+  firebase_core: ^4.1.0
+  firebase_auth: ^6.1.0
+  cloud_firestore: ^6.0.2
+  firebase_messaging: ^16.0.1
+
+  # ==================== Local Storage ====================
+  shared_preferences: ^2.5.3
+  flutter_secure_storage: ^9.2.2
+  path_provider: ^2.1.3
+  flutter_cache_manager: ^3.4.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # ==================== Localization ====================
+  easy_localization: ^3.0.7
+  intl: ^0.20.2
+
+  # ==================== UI Components & Widgets ====================
+  cached_network_image: ^3.4.1
+  shimmer: ^3.0.0
+  flutter_spinkit: ^5.2.1
+  skeletonizer: ^2.1.0+1
+  flutter_svg: ^2.0.21
+  lottie: ^3.1.2
+  carousel_slider: ^5.1.1
+  dotted_border: ^3.1.0
+  photo_view: ^0.15.0
+  sliver_tools: ^0.2.12
+  pinput: ^5.0.0
+  flutter_colorpicker: ^1.1.0
+  dropdown_search: ^6.0.2
+
+  # ==================== Media & Files ====================
+  image_picker: ^1.2.0
+  image_cropper: ^11.0.0
+  file_picker: ^10.3.2
+
+  # ==================== Notifications ====================
+  flutter_local_notifications: ^19.4.1
+
+  # ==================== Utilities ====================
+  url_launcher: ^6.3.2
+  share_plus: ^12.0.0
+  fluttertoast: ^9.0.0
+  logger: ^2.6.1
+  path: ^1.9.1
+  watcher: ^1.1.0
+
+  # ==================== Functional Programming ====================
+  dartz: ^0.10.1
+  multiple_result: ^5.1.0
+
+  # ==================== JSON Serialization ====================
+  json_annotation: ^4.9.0
+
+  # ==================== Permissions ====================
+  permission_handler: ^11.3.1
+
+  # ==================== Location & Maps ====================
+  geolocator: ^13.0.2
+  google_maps_flutter: ^2.10.0
+  geocoding: ^3.0.0
+
+  # ==================== Charts & Analytics ====================
+  fl_chart: ^0.69.0
+
+  # ==================== Connectivity ====================
+  connectivity_plus: ^6.1.2
+  internet_connection_checker_plus: ^2.5.2
+
+  # ==================== Device Info ====================
+  device_info_plus: ^12.0.0
+  package_info_plus: ^8.1.4
+
+  # ==================== Biometric & Security ====================
+  local_auth: ^2.3.0
+
+  # ==================== Remote Config ====================
+  firebase_remote_config: ^6.0.2
+
+  # ==================== App Rating & Review ====================
+  in_app_review: ^2.0.10
+
+  # ==================== Web View ====================
+  webview_flutter: ^4.10.0
+
+  # ==================== QR Code ====================
+  qr_code_scanner: ^1.0.1
+  qr_flutter: ^4.1.0
+
+  # ==================== Responsive Design ====================
+  responsive_builder: ^0.7.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  # ==================== Linting & Code Quality ====================
+  flutter_lints: ^6.0.0
+
+  # ==================== Code Generation ====================
+  build_runner: ^2.4.13
+  hive_generator: ^2.0.1
+
+  # ==================== Testing ====================
+  # mockito: ^5.4.4
+  # bloc_test: ^9.1.5
+
+flutter:
+  uses-material-design: true
+
+  # ==================== Assets ====================
+  assets:
+    - assets/translations/
+  #   - assets/images/
+  #   - assets/icons/
+  #   - assets/animations/
+
+  # ==================== Custom Fonts ====================
+  # Uncomment and add your custom fonts:
+  # fonts:
+  #   - family: CustomFont
+  #     fonts:
+  #       - asset: assets/fonts/CustomFont-Regular.ttf
+  #       - asset: assets/fonts/CustomFont-Bold.ttf
+  #         weight: 700

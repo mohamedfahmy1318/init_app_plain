@@ -1,0 +1,13 @@
+{
+  "app_name": "My App",
+  "welcome": "Welcome",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "forgot_password": "Forgot Password?",
+  "register": "Register",
+  "logout": "Logout",
+  "home": "Home",
+  "profile": "Profile",
+  "settings": "Settings"
+}
