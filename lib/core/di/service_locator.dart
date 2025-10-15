@@ -17,20 +17,6 @@ import '../services/cache_manager_service.dart';
 import '../services/logger_service.dart';
 
 // Auth Feature
-import '../../features/auth/data/datasources/auth_remote_datasource.dart';
-import '../../features/auth/data/repositories/auth_repository_impl.dart';
-import '../../features/auth/domain/repositories/auth_repository.dart';
-import '../../features/auth/domain/usecases/get_auths_usecase.dart';
-import '../../features/auth/presentation/cubit/login_cubit.dart';
-
-// Brands Feature
-import '../../features/brands/data/datasources/brands_remote_datasource.dart';
-import '../../features/brands/data/datasources/brands_local_datasource.dart';
-import '../../features/brands/data/models/brand_model.dart';
-import '../../features/brands/data/repositories/brands_repository_impl.dart';
-import '../../features/brands/domain/repositories/brands_repository.dart';
-import '../../features/brands/domain/usecases/get_brands_usecase.dart';
-import '../../features/brands/presentation/cubit/brands_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -40,7 +26,6 @@ Future<void> setupServiceLocator() async {
   await HiveService.instance.init();
 
   // Register TypeAdapters
-  HiveService.instance.registerAdapter(BrandModelAdapter());
 
   getIt.registerSingleton<HiveService>(HiveService.instance);
 
@@ -80,55 +65,4 @@ Future<void> setupServiceLocator() async {
   getIt.registerSingleton<LoggerService>(loggerService);
 
   // ==================== Auth Feature ====================
-  // Data Sources
-  getIt.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(getIt<DioClient>()),
-  );
-
-  // Repositories
-  getIt.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(
-      getIt<AuthRemoteDataSource>(),
-      getIt<SecureStorageService>(),
-    ),
-  );
-
-  // UseCases
-  getIt.registerLazySingleton(() => LoginUseCase(getIt<AuthRepository>()));
-  getIt.registerLazySingleton(() => LogoutUseCase(getIt<AuthRepository>()));
-  getIt.registerLazySingleton(
-    () => GetCurrentUserUseCase(getIt<AuthRepository>()),
-  );
-
-  // Cubits
-  getIt.registerFactory(() => LoginCubit(loginUseCase: getIt<LoginUseCase>()));
-
-  // ==================== Brands Feature ====================
-  // Data Sources
-  getIt.registerLazySingleton<BrandsRemoteDataSource>(
-    () => BrandsRemoteDataSourceImpl(dioClient: getIt<DioClient>()),
-  );
-
-  getIt.registerLazySingleton<BrandsLocalDataSource>(
-    () => BrandsLocalDataSourceImpl(hiveService: getIt<HiveService>()),
-  );
-
-  // Repositories
-  getIt.registerLazySingleton<BrandsRepository>(
-    () => BrandsRepositoryImpl(
-      remoteDataSource: getIt<BrandsRemoteDataSource>(),
-      localDataSource: getIt<BrandsLocalDataSource>(),
-    ),
-  );
-
-  // UseCases
-  getIt.registerLazySingleton(
-    () => GetBrandsUseCase(getIt<BrandsRepository>()),
-  );
-
-  // Cubits
-  getIt.registerFactory(
-    () => BrandsCubit(getBrandsUseCase: getIt<GetBrandsUseCase>()),
-  );
-  // ==================== Subcategories Feature ====================
 }

@@ -6,13 +6,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:init_app_flutter/features/brands/presentation/pages/brands_page.dart';
-import '../../features/auth/presentation/pages/splash_page.dart';
-import '../../features/auth/presentation/pages/login_page.dart';
-import '../../features/auth/presentation/pages/home_page.dart';
-import '../../features/core_demo/core_demo_page.dart';
-import '../pages/map_demo/map_demo_page.dart';
-import '../pages/core_demo/presentation/pages/charts_demo_page.dart';
 
 class AppRouter {
   AppRouter._();
@@ -39,34 +32,6 @@ class AppRouter {
     debugLogDiagnostics: true,
     errorBuilder: (context, state) => _ErrorScreen(error: state.error),
     routes: [
-      // ==================== Core Demo Page ====================
-      GoRoute(
-        path: coreDemo,
-        name: 'coreDemo',
-        builder: (context, state) => const CoreDemoPage(),
-      ),
-
-      // ==================== Map Demo Page ====================
-      GoRoute(
-        path: mapDemo,
-        name: 'mapDemo',
-        builder: (context, state) => const MapDemoPage(),
-      ),
-
-      // ==================== Charts Demo Page ====================
-      GoRoute(
-        path: chartsDemo,
-        name: 'chartsDemo',
-        builder: (context, state) => const ChartsDemoPage(),
-      ),
-
-      // ==================== Splash Screen ====================
-      GoRoute(
-        path: splash,
-        name: 'splash',
-        builder: (context, state) => const SplashPage(),
-      ),
-
       // ==================== Onboarding Screen ====================
       GoRoute(
         path: onboarding,
@@ -76,12 +41,6 @@ class AppRouter {
       ),
 
       // ==================== Auth Routes ====================
-      GoRoute(
-        path: login,
-        name: 'login',
-        builder: (context, state) => const LoginPage(),
-      ),
-
       GoRoute(
         path: register,
         name: 'register',
@@ -108,18 +67,6 @@ class AppRouter {
       ),
 
       // ==================== Main Routes ====================
-      GoRoute(
-        path: home,
-        name: 'home',
-        builder: (context, state) => const HomePage(),
-      ),
-
-      GoRoute(
-        path: brands,
-        name: 'brands',
-        builder: (context, state) => const BrandsPage(),
-      ),
-
       GoRoute(
         path: settings,
         name: 'settings',
