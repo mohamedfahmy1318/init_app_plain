@@ -54,7 +54,7 @@
 
 # ==================== Your App Models ====================
 # Add your data models here to prevent obfuscation
--keep class com.example.init_app_flutter.**.models.** { *; }
+-keep class com.example.bainona.**.models.** { *; }
 -keep class * implements android.os.Parcelable {
   public static final android.os.Parcelable$Creator *;
 }

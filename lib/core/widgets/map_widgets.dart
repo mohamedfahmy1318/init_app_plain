@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:init_app_flutter/core/utils/map_helper.dart';
+import 'package:bainona/core/utils/map_helper.dart';
 import 'dart:async';
 
 /// ========================================================
@@ -89,7 +89,8 @@ class _CustomMapWidgetState extends State<CustomMapWidget> {
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
-      initialCameraPosition: widget.initialCameraPosition ??
+      initialCameraPosition:
+          widget.initialCameraPosition ??
           CameraPosition(
             target: widget.initialPosition,
             zoom: widget.initialZoom,
@@ -174,12 +175,12 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
 
   Future<void> _loadAddress() async {
     setState(() => _isLoadingAddress = true);
-    
+
     final address = await MapHelper.getAddressFromCoordinates(
       _selectedLocation.latitude,
       _selectedLocation.longitude,
     );
-    
+
     if (mounted) {
       setState(() {
         _address = address;
@@ -256,19 +257,13 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
                         ],
                       )
                     else if (_address != null)
-                      Text(
-                        _address!,
-                        style: const TextStyle(fontSize: 14),
-                      )
+                      Text(_address!, style: const TextStyle(fontSize: 14))
                     else
                       const Text('اضغط على الخريطة لتحديد الموقع'),
                     const SizedBox(height: 4),
                     Text(
                       MapHelper.latLngToString(_selectedLocation),
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[600],
-                      ),
+                      style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                     ),
                   ],
                 ),
@@ -374,7 +369,7 @@ class _MapWithCurrentLocationWidgetState
 
   Future<void> _getCurrentLocation() async {
     Position? position = await MapHelper.getCurrentLocation();
-    
+
     if (position != null && mounted) {
       setState(() {
         _currentLocation = LatLng(position.latitude, position.longitude);

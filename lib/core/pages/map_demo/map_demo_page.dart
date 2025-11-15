@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:init_app_flutter/core/widgets/app_widgets.dart';
-import 'package:init_app_flutter/core/utils/utils.dart';
+import 'package:bainona/core/widgets/app_widgets.dart';
+import 'package:bainona/core/utils/utils.dart';
 
 /// ========================================================
 /// Map Demo Page - صفحة تجريب الخرائط

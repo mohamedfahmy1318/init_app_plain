@@ -1,9 +1,3 @@
-/// ========================================================
-/// Service Locator - Dependency Injection Container
-/// ========================================================
-/// مسؤول عن إدارة جميع التبعيات في التطبيق باستخدام get_it
-/// ========================================================
-
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../network/dio_client.dart';
@@ -17,21 +11,10 @@ import '../services/cache_manager_service.dart';
 import '../services/logger_service.dart';
 
 // Auth Feature
-import '../../features/auth/data/datasources/auth_remote_datasource.dart';
-import '../../features/auth/data/repositories/auth_repository_impl.dart';
-import '../../features/auth/domain/repositories/auth_repository.dart';
-import '../../features/auth/domain/usecases/get_auths_usecase.dart';
-import '../../features/auth/presentation/cubit/login_cubit.dart';
 
-// Brands Feature
-import '../../features/brands/data/datasources/brands_remote_datasource.dart';
-import '../../features/brands/data/datasources/brands_local_datasource.dart';
-import '../../features/brands/data/models/brand_model.dart';
-import '../../features/brands/data/repositories/brands_repository_impl.dart';
-import '../../features/brands/domain/repositories/brands_repository.dart';
-import '../../features/brands/domain/usecases/get_brands_usecase.dart';
-import '../../features/brands/presentation/cubit/brands_cubit.dart';
+// Home Feature - Hive Adapters
 
+// Home Feature - DataSources & Repository
 final getIt = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
@@ -39,9 +22,9 @@ Future<void> setupServiceLocator() async {
   // Initialize Hive
   await HiveService.instance.init();
 
-  // Register TypeAdapters
-  HiveService.instance.registerAdapter(BrandModelAdapter());
-
+  // Register TypeAdapters for Home Feature
+  //_registerHomeAdapters();
+  //_registerProfileAdapters();
   getIt.registerSingleton<HiveService>(HiveService.instance);
 
   getIt.registerLazySingleton<SecureStorageService>(
@@ -81,6 +64,7 @@ Future<void> setupServiceLocator() async {
 
   // ==================== Auth Feature ====================
   // Data Sources
+  /*
   getIt.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(getIt<DioClient>()),
   );
@@ -92,43 +76,183 @@ Future<void> setupServiceLocator() async {
       getIt<SecureStorageService>(),
     ),
   );
-
+  */
+  /*
   // UseCases
   getIt.registerLazySingleton(() => LoginUseCase(getIt<AuthRepository>()));
+  getIt.registerLazySingleton(() => RegisterUseCase(getIt<AuthRepository>()));
   getIt.registerLazySingleton(() => LogoutUseCase(getIt<AuthRepository>()));
   getIt.registerLazySingleton(
     () => GetCurrentUserUseCase(getIt<AuthRepository>()),
   );
+  getIt.registerLazySingleton(() => IsLoggedInUseCase(getIt<AuthRepository>()));
 
   // Cubits
   getIt.registerFactory(() => LoginCubit(loginUseCase: getIt<LoginUseCase>()));
+  getIt.registerFactory(
+    () => RegisterCubit(registerUseCase: getIt<RegisterUseCase>()),
+  );
 
-  // ==================== Brands Feature ====================
+  // ==================== Home Feature ====================
   // Data Sources
-  getIt.registerLazySingleton<BrandsRemoteDataSource>(
-    () => BrandsRemoteDataSourceImpl(dioClient: getIt<DioClient>()),
+  getIt.registerLazySingleton<HomeRemoteDataSource>(
+    () => HomeRemoteDataSourceImpl(getIt<DioClient>()),
   );
-
-  getIt.registerLazySingleton<BrandsLocalDataSource>(
-    () => BrandsLocalDataSourceImpl(hiveService: getIt<HiveService>()),
+  getIt.registerLazySingleton<HomeLocalDataSource>(
+    () => HomeLocalDataSourceImpl(getIt<HiveService>()),
   );
-
-  // Repositories
-  getIt.registerLazySingleton<BrandsRepository>(
-    () => BrandsRepositoryImpl(
-      remoteDataSource: getIt<BrandsRemoteDataSource>(),
-      localDataSource: getIt<BrandsLocalDataSource>(),
+  getIt.registerLazySingleton<SpecializationLocalDataSource>(
+    () => SpecializationLocalDataSourceImpl(getIt<HiveService>()),
+  );
+  getIt.registerLazySingleton<GetAllDoctorsLocalDataSource>(
+    () => GetAllDoctorsLocalDataSourceImpl(getIt<HiveService>()),
+  );
+  // Repository
+  getIt.registerLazySingleton<HomeRepository>(
+    () => HomeRepositoryImpl(
+      remoteDataSource: getIt<HomeRemoteDataSource>(),
+      localDataSource: getIt<HomeLocalDataSource>(),
+      specializationLocalDataSource: getIt<SpecializationLocalDataSource>(),
+      getAllDoctorsLocalDataSource: getIt<GetAllDoctorsLocalDataSource>(),
     ),
   );
 
   // UseCases
   getIt.registerLazySingleton(
-    () => GetBrandsUseCase(getIt<BrandsRepository>()),
+    () => GetHomeDataUseCase(getIt<HomeRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => GetSpecializationUseCase(getIt<HomeRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => GetAllDoctorsUseCase(getIt<HomeRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => GetOneDoctorUseCase(getIt<HomeRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => GetDoctorSpecialization(getIt<HomeRepository>()),
   );
 
-  // Cubits
+  // Cubit
   getIt.registerFactory(
-    () => BrandsCubit(getBrandsUseCase: getIt<GetBrandsUseCase>()),
+    () => HomeCubit(getHomeDataUseCase: getIt<GetHomeDataUseCase>()),
   );
-  // ==================== Subcategories Feature ====================
+  getIt.registerFactory(
+    () => SpecializationCubit(
+      getSpecializationUseCase: getIt<GetSpecializationUseCase>(),
+    ),
+  );
+  getIt.registerFactory(
+    () => DoctorsCubit(
+      getAllDoctorsUseCase: getIt<GetAllDoctorsUseCase>(),
+      getOneDoctorUseCase: getIt<GetOneDoctorUseCase>(),
+    ),
+  );
+  getIt.registerFactory(
+    () => DoctorsSpecCubit(
+      getDoctorsBySpecializationUseCase: getIt<GetDoctorSpecialization>(),
+    ),
+  );
+  // ==================== search Features ====================
+  // Data Sources
+  getIt.registerLazySingleton<SearchRemoteDataSource>(
+    () => SearchRemoteDataSourceImpl(client: getIt<DioClient>()),
+  );
+  getIt.registerLazySingleton<LocalSearchDataSource>(
+    () => LocalSearchDataSourceImpl(getIt<HiveService>()),
+  );
+  // Repository
+  getIt.registerLazySingleton<SearchRepository>(
+    () => SearchRepositoryImpl(
+      remoteDataSource: getIt<SearchRemoteDataSource>(),
+      localDataSource: getIt<LocalSearchDataSource>(),
+    ),
+  );
+  // UseCases
+  getIt.registerLazySingleton(
+    () => SearchDoctorUseCase(getIt<SearchRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => GetAllCitiesUseCase(searchRepository: getIt<SearchRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => FilterDoctorWithCityUseCase(getIt<SearchRepository>()),
+  );
+  // Cubit
+
+  getIt.registerFactory(
+    () => SearchCubit(
+      getSearchDoctorUseCase: getIt<SearchDoctorUseCase>(),
+      getAllCitiesUseCase: getIt<GetAllCitiesUseCase>(),
+      filterDoctorWithCityUseCase: getIt<FilterDoctorWithCityUseCase>(),
+    ),
+  );
+  // ==================== Appointment Features ====================
+  /// Data Sources
+  getIt.registerLazySingleton<AppointmentRemoteDataSource>(
+    () => AppointmentRemoteDataSourceImpl(getIt<DioClient>()),
+  );
+
+  // Repository
+  getIt.registerLazySingleton<AppointmentRepository>(
+    () => AppointmentRepositoryImpl(
+      remoteDataSource: getIt<AppointmentRemoteDataSource>(),
+    ),
+  );
+  // UseCases
+  getIt.registerLazySingleton(
+    () => CreateAppointmentUseCase(getIt<AppointmentRepository>()),
+  );
+  // Cubit
+  getIt.registerFactory(
+    () => AppointmentCubit(getIt<CreateAppointmentUseCase>()),
+  );
+  // ===================== Profile Features ====================
+  // data sources
+  getIt.registerLazySingleton<ProfileRemoteDataSource>(
+    () => ProfileRemoteDataSourceImpl(getIt<DioClient>()),
+  );
+  getIt.registerLazySingleton<ProfileLocalDataSource>(
+    () => ProfileLocalDataSourceImpl(getIt<HiveService>()),
+  );
+  // repositories
+  getIt.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepoImpl(
+      remoteDataSource: getIt<ProfileRemoteDataSource>(),
+      localDataSource: getIt<ProfileLocalDataSource>(),
+    ),
+  );
+  // use cases
+  getIt.registerLazySingleton(
+    () => GetUserProfileUseCase(getIt<ProfileRepository>()),
+  );
+  getIt.registerLazySingleton(
+    () => UpdateProfileUseCase(getIt<ProfileRepository>()),
+  );
+  // cubits
+  getIt.registerFactory(
+    () => ProfileCubit(
+      getUserProfileUseCase: getIt<GetUserProfileUseCase>(),
+      updateProfileUseCase: getIt<UpdateProfileUseCase>(),
+    ),
+  );
+}
+
+/// ========================================================
+/// Register Hive TypeAdapters
+/// ========================================================
+void _registerHomeAdapters() {
+  HiveService.instance.registerAdapter(GovernorateModelAdapter());
+  HiveService.instance.registerAdapter(CityModelAdapter());
+  HiveService.instance.registerAdapter(SpecializationModelAdapter());
+  HiveService.instance.registerAdapter(DoctorModelAdapter());
+  HiveService.instance.registerAdapter(SpecializationWithDoctorsModelAdapter());
+}
+
+void _registerProfileAdapters() {
+  HiveService.instance.registerAdapter(ProfileResponseModelAdapter());
+  HiveService.instance.registerAdapter(ProfileModelAdapter());
+}
+  */
 }

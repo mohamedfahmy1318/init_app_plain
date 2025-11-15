@@ -1,5 +1,5 @@
 import 'package:url_launcher/url_launcher.dart';
-import 'package:init_app_flutter/core/utils/toast_helper.dart';
+import 'package:bainona/core/utils/toast_helper.dart';
 
 /// ========================================================
 /// URL Launcher Helper

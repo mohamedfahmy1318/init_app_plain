@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:share_plus/share_plus.dart';
-import 'package:init_app_flutter/core/utils/toast_helper.dart';
+import 'package:bainona/core/utils/toast_helper.dart';
 
 /// ========================================================
 /// Share Helper

@@ -1,4 +1,4 @@
-package com.example.init_app_flutter
+package com.example.bainona
 
 import io.flutter.embedding.android.FlutterActivity
 

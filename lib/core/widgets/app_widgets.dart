@@ -6,7 +6,7 @@
 ///
 /// مثال:
 /// ```dart
-/// import 'package:init_app_flutter/core/widgets/app_widgets.dart';
+/// import 'package:bainona/core/widgets/app_widgets.dart';
 ///
 /// CustomButton(text: 'زر');
 /// LoadingWidget();
