@@ -6,7 +6,7 @@
 ///
 /// مثال:
 /// ```dart
-/// import 'package:bainona/core/widgets/app_widgets.dart';
+/// import 'package:Bynona/core/widgets/app_widgets.dart';
 ///
 /// CustomButton(text: 'زر');
 /// LoadingWidget();

@@ -1,4 +1,4 @@
-import 'package:bainona/core/router/routes_name.dart';
+import 'package:Bynona/core/router/routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../pages/map_demo/map_demo_page.dart';

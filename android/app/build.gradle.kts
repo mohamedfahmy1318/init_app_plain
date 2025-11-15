@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.bainona"
+    namespace = "com.example.Bynona"
     compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
@@ -23,7 +23,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.bainona"
+        applicationId = "com.example.Bynona"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 24  // Required for: image_cropper, local_auth, firebase packages

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:bainona/core/utils/map_helper.dart';
+import 'package:Bynona/core/utils/map_helper.dart';
 import 'dart:async';
 
 /// ========================================================

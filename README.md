@@ -87,7 +87,7 @@ flutter run
 
 ### استيراد Core
 ```dart
-import 'package:bainona/core/core.dart';
+import 'package:Bynona/core/core.dart';
 ```
 
 ### استخدام Cubit
@@ -476,7 +476,7 @@ flutter run
 
 ### استيراد الـ Core
 ```dart
-import 'package:bainona/core/core.dart';
+import 'package:Bynona/core/core.dart';
 ```
 
 ### استخدام DioClient

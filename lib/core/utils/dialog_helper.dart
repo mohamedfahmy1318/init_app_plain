@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bainona/core/widgets/app_widgets.dart';
+import 'package:Bynona/core/widgets/app_widgets.dart';
 
 /// ========================================================
 /// Dialog Helper
