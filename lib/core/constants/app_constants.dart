@@ -8,31 +8,6 @@ library;
 class AppConstants {
   AppConstants._();
 
-  // ==================== Assets ====================
-  static const String assetsPath = 'assets';
-  static const String imagesPath = '$assetsPath/images';
-  static const String iconsPath = '$assetsPath/icons';
-  static const String animationsPath = '$assetsPath/animations';
-  static const String translationsPath = '$assetsPath/translations';
-
-  // ==================== Common Images ====================
-  static const String logoImage = '$imagesPath/logo.png';
-  static const String splashImage = '$imagesPath/splash.png';
-  static const String placeholderImage = '$imagesPath/placeholder.png';
-  static const String noDataImage = '$imagesPath/no_data.png';
-  static const String errorImage = '$imagesPath/error.png';
-
-  // ==================== Common Icons ====================
-  static const String homeIcon = '$iconsPath/home.svg';
-  static const String profileIcon = '$iconsPath/profile.svg';
-  static const String settingsIcon = '$iconsPath/settings.svg';
-
-  // ==================== Animations ====================
-  static const String loadingAnimation = '$animationsPath/loading.json';
-  static const String successAnimation = '$animationsPath/success.json';
-  static const String errorAnimation = '$animationsPath/error.json';
-  static const String emptyAnimation = '$animationsPath/empty.json';
-
   // ==================== Regular Expressions ====================
   static final RegExp emailRegex = RegExp(
     r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',

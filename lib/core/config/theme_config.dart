@@ -1,44 +1,12 @@
-/// ========================================================
-/// Theme Configuration - إعدادات الثيم والألوان
-/// ========================================================
-/// يحتوي على جميع إعدادات الثيم والألوان للتطبيق
-/// ========================================================
 library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'app_colors.dart';
 
 class ThemeConfig {
   ThemeConfig._();
-
-  // ==================== Primary Colors ====================
-  static const Color primaryColor = Color(0xFF6C5CE7);
-  static const Color primaryLightColor = Color(0xFFA29BFE);
-  static const Color primaryDarkColor = Color(0xFF5849BE);
-
-  // ==================== Secondary Colors ====================
-  static const Color secondaryColor = Color(0xFF00B894);
-  static const Color secondaryLightColor = Color(0xFF55EFC4);
-  static const Color secondaryDarkColor = Color(0xFF00966D);
-
-  // ==================== Neutral Colors ====================
-  static const Color backgroundColor = Color(0xFFF5F6FA);
-  static const Color surfaceColor = Color(0xFFFFFFFF);
-  static const Color cardColor = Color(0xFFFFFFFF);
-  static const Color dividerColor = Color(0xFFE0E0E0);
-
-  // ==================== Text Colors ====================
-  static const Color textPrimaryColor = Color(0xFF2D3436);
-  static const Color textSecondaryColor = Color(0xFF636E72);
-  static const Color textHintColor = Color(0xFFB2BEC3);
-  static const Color textDisabledColor = Color(0xFFDFE6E9);
-
-  // ==================== Status Colors ====================
-  static const Color successColor = Color(0xFF00B894);
-  static const Color errorColor = Color(0xFFD63031);
-  static const Color warningColor = Color(0xFFFDCB6E);
-  static const Color infoColor = Color(0xFF0984E3);
 
   // ==================== Dark Mode Colors ====================
   static const Color darkBackgroundColor = Color(0xFF121212);
@@ -64,31 +32,35 @@ class ThemeConfig {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
-      primaryColor: primaryColor,
-      scaffoldBackgroundColor: backgroundColor,
-      colorScheme: const ColorScheme.light(
-        primary: primaryColor,
-        secondary: secondaryColor,
-        surface: surfaceColor,
-        error: errorColor,
-        onPrimary: Colors.white,
-        onSecondary: Colors.white,
-        onSurface: textPrimaryColor,
-        onError: Colors.white,
+      primaryColor: AppColors.primary,
+      scaffoldBackgroundColor: AppColors.background,
+      colorScheme: ColorScheme.light(
+        primary: AppColors.primary,
+        primaryContainer: AppColors.primary,
+        secondary: AppColors.success,
+        surface: AppColors.background,
+        error: AppColors.error,
+        errorContainer: AppColors.error,
+        onPrimary: AppColors.textPrimary,
+        onSecondary: AppColors.textSecondary,
+        onSurface: AppColors.textPrimary,
+        onError: AppColors.error,
+        outline: AppColors.borderColor,
+        outlineVariant: AppColors.borderColor,
       ),
 
       // AppBar Theme
       appBarTheme: AppBarTheme(
         elevation: 0,
         centerTitle: true,
-        backgroundColor: surfaceColor,
-        foregroundColor: textPrimaryColor,
+        backgroundColor: AppColors.background,
+        foregroundColor: AppColors.textPrimary,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
-        iconTheme: const IconThemeData(color: textPrimaryColor),
-        titleTextStyle: GoogleFonts.cairo(
+        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        titleTextStyle: GoogleFonts.inter(
           fontSize: 18,
           fontWeight: FontWeight.w600,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
       ),
 
@@ -96,7 +68,7 @@ class ThemeConfig {
       cardTheme: CardThemeData(
         elevation: 2,
         shadowColor: Colors.black12,
-        color: cardColor,
+        color: AppColors.background,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius),
         ),
@@ -105,46 +77,52 @@ class ThemeConfig {
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: surfaceColor,
+        fillColor: AppColors.background,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: paddingMD,
           vertical: paddingMD,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(color: dividerColor),
+          borderSide: const BorderSide(color: AppColors.borderColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(color: dividerColor),
+          borderSide: const BorderSide(color: AppColors.borderColor),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(color: primaryColor, width: 2),
+          borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(color: errorColor),
+          borderSide: const BorderSide(color: AppColors.error),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(color: errorColor, width: 2),
+          borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
-        hintStyle: GoogleFonts.cairo(color: textHintColor, fontSize: 14),
-        labelStyle: GoogleFonts.cairo(color: textSecondaryColor, fontSize: 14),
+        hintStyle: GoogleFonts.roboto(
+          color: AppColors.textPrimary,
+          fontSize: 14,
+        ),
+        labelStyle: GoogleFonts.roboto(
+          color: AppColors.textSecondary,
+          fontSize: 14,
+        ),
       ),
 
       // Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          backgroundColor: primaryColor,
-          foregroundColor: Colors.white,
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.textPrimary,
           minimumSize: const Size(double.infinity, 52),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
-          textStyle: GoogleFonts.cairo(
+          textStyle: GoogleFonts.roboto(
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -154,8 +132,8 @@ class ThemeConfig {
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: primaryColor,
-          textStyle: GoogleFonts.cairo(
+          foregroundColor: AppColors.primary,
+          textStyle: GoogleFonts.inter(
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -165,13 +143,13 @@ class ThemeConfig {
       // Outlined Button Theme
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: primaryColor,
+          foregroundColor: AppColors.primary,
           minimumSize: const Size(double.infinity, 52),
-          side: const BorderSide(color: primaryColor, width: 1.5),
+          side: const BorderSide(color: AppColors.primary, width: 1.5),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
-          textStyle: GoogleFonts.cairo(
+          textStyle: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -179,27 +157,31 @@ class ThemeConfig {
       ),
 
       // Icon Theme
-      iconTheme: const IconThemeData(color: textPrimaryColor, size: 24),
+      iconTheme: const IconThemeData(color: AppColors.textPrimary, size: 24),
 
       // Divider Theme
       dividerTheme: const DividerThemeData(
-        color: dividerColor,
+        color: AppColors.divider,
         thickness: 1,
         space: 1,
       ),
 
       // Bottom Navigation Bar Theme
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: surfaceColor,
-        selectedItemColor: primaryColor,
-        unselectedItemColor: textSecondaryColor,
-        type: BottomNavigationBarType.fixed,
-        elevation: 8,
-        selectedLabelStyle: GoogleFonts.cairo(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
+        backgroundColor: AppColors.primary,
+        selectedItemColor: AppColors.successLight,
+        selectedIconTheme: IconThemeData(
+          color: AppColors.successLight,
+          size: 30,
         ),
-        unselectedLabelStyle: GoogleFonts.cairo(
+        unselectedItemColor: AppColors.successLight,
+        type: BottomNavigationBarType.fixed,
+        elevation: 0,
+        selectedLabelStyle: GoogleFonts.roboto(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+        ),
+        unselectedLabelStyle: GoogleFonts.roboto(
           fontSize: 12,
           fontWeight: FontWeight.w500,
         ),
@@ -207,101 +189,107 @@ class ThemeConfig {
 
       // Text Theme
       textTheme: TextTheme(
-        displayLarge: GoogleFonts.cairo(
+        displayLarge: GoogleFonts.inter(
           fontSize: 32,
           fontWeight: FontWeight.bold,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        displayMedium: GoogleFonts.cairo(
+        displayMedium: GoogleFonts.inter(
           fontSize: 28,
           fontWeight: FontWeight.bold,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        displaySmall: GoogleFonts.cairo(
+        displaySmall: GoogleFonts.inter(
           fontSize: 24,
           fontWeight: FontWeight.bold,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        headlineLarge: GoogleFonts.cairo(
+        headlineLarge: GoogleFonts.inter(
           fontSize: 22,
           fontWeight: FontWeight.w600,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        headlineMedium: GoogleFonts.cairo(
+        headlineMedium: GoogleFonts.inter(
           fontSize: 20,
           fontWeight: FontWeight.w600,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        headlineSmall: GoogleFonts.cairo(
+        headlineSmall: GoogleFonts.inter(
           fontSize: 18,
           fontWeight: FontWeight.w600,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        titleLarge: GoogleFonts.cairo(
+        titleLarge: GoogleFonts.inter(
           fontSize: 16,
           fontWeight: FontWeight.w600,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        titleMedium: GoogleFonts.cairo(
+        titleMedium: GoogleFonts.inter(
           fontSize: 14,
           fontWeight: FontWeight.w600,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        titleSmall: GoogleFonts.cairo(
+        titleSmall: GoogleFonts.inter(
           fontSize: 12,
           fontWeight: FontWeight.w600,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        bodyLarge: GoogleFonts.cairo(
+        bodyLarge: GoogleFonts.inter(
           fontSize: 16,
           fontWeight: FontWeight.normal,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        bodyMedium: GoogleFonts.cairo(
+        bodyMedium: GoogleFonts.inter(
           fontSize: 14,
           fontWeight: FontWeight.normal,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        bodySmall: GoogleFonts.cairo(
+        bodySmall: GoogleFonts.inter(
           fontSize: 12,
           fontWeight: FontWeight.normal,
-          color: textSecondaryColor,
+          color: AppColors.textSecondary,
         ),
-        labelLarge: GoogleFonts.cairo(
+        labelLarge: GoogleFonts.inter(
           fontSize: 14,
           fontWeight: FontWeight.w500,
-          color: textPrimaryColor,
+          color: AppColors.textPrimary,
         ),
-        labelMedium: GoogleFonts.cairo(
+        labelMedium: GoogleFonts.inter(
           fontSize: 12,
           fontWeight: FontWeight.w500,
-          color: textSecondaryColor,
+          color: AppColors.textSecondary,
         ),
-        labelSmall: GoogleFonts.cairo(
+        labelSmall: GoogleFonts.inter(
           fontSize: 10,
           fontWeight: FontWeight.w500,
-          color: textHintColor,
+          color: AppColors.textPrimary,
         ),
       ),
     );
   }
 
   // ==================== Dark Theme ====================
-  static ThemeData get darkTheme {
+  /*static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
-      primaryColor: primaryColor,
+      primaryColor: AppColors.primary,
       scaffoldBackgroundColor: darkBackgroundColor,
       colorScheme: const ColorScheme.dark(
-        primary: primaryColor,
-        secondary: secondaryColor,
+        primary: AppColors.primary,
+        primaryContainer: AppColors.primaryDark,
+        secondary: AppColors.success,
+        secondaryContainer: AppColors.s,
+        tertiary: AppColors.info,
         surface: darkSurfaceColor,
-        error: errorColor,
-        onPrimary: Colors.white,
-        onSecondary: Colors.white,
+        surfaceContainerHighest: darkCardColor,
+        error: AppColors.error,
+        errorContainer: AppColors.errorDark,
+        onPrimary: AppColors.textOnPrimary,
+        onSecondary: AppColors.textOnPrimary,
         onSurface: Colors.white,
-        onError: Colors.white,
+        onError: AppColors.textOnPrimary,
+        outline: darkDividerColor,
       ),
 
       // AppBar Theme
@@ -312,7 +300,7 @@ class ThemeConfig {
         foregroundColor: Colors.white,
         systemOverlayStyle: SystemUiOverlayStyle.light,
         iconTheme: const IconThemeData(color: Colors.white),
-        titleTextStyle: GoogleFonts.cairo(
+        titleTextStyle: GoogleFonts.inter(
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: Colors.white,
@@ -347,38 +335,112 @@ class ThemeConfig {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(color: primaryColor, width: 2),
+          borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(color: errorColor),
+          borderSide: const BorderSide(color: AppColors.error),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(color: errorColor, width: 2),
+          borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
-        hintStyle: GoogleFonts.cairo(color: textHintColor, fontSize: 14),
-        labelStyle: GoogleFonts.cairo(color: Colors.white70, fontSize: 14),
+        hintStyle: GoogleFonts.inter(
+          color: AppColors.textTertiary,
+          fontSize: 14,
+        ),
+        labelStyle: GoogleFonts.inter(color: Colors.white70, fontSize: 14),
+      ),
+
+      // Elevated Button Theme
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.textOnPrimary,
+          minimumSize: const Size(double.infinity, 52),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
+          textStyle: GoogleFonts.inter(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+
+      // Text Button Theme
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: AppColors.primary,
+          textStyle: GoogleFonts.inter(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+
+      // Outlined Button Theme
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.primary,
+          minimumSize: const Size(double.infinity, 52),
+          side: const BorderSide(color: AppColors.primary, width: 1.5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
+          textStyle: GoogleFonts.inter(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+
+      // Icon Theme
+      iconTheme: const IconThemeData(color: Colors.white, size: 24),
+
+      // Divider Theme
+      dividerTheme: const DividerThemeData(
+        color: darkDividerColor,
+        thickness: 1,
+        space: 1,
+      ),
+
+      // Bottom Navigation Bar Theme
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: darkSurfaceColor,
+        selectedItemColor: AppColors.primary,
+        unselectedItemColor: Colors.white60,
+        type: BottomNavigationBarType.fixed,
+        elevation: 8,
+        selectedLabelStyle: GoogleFonts.inter(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+        unselectedLabelStyle: GoogleFonts.inter(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
       ),
 
       // Text Theme for Dark Mode
       textTheme: TextTheme(
-        displayLarge: GoogleFonts.cairo(
+        displayLarge: GoogleFonts.inter(
           fontSize: 32,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
-        displayMedium: GoogleFonts.cairo(
+        displayMedium: GoogleFonts.inter(
           fontSize: 28,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
-        bodyLarge: GoogleFonts.cairo(
+        bodyLarge: GoogleFonts.inter(
           fontSize: 16,
           fontWeight: FontWeight.normal,
           color: Colors.white,
         ),
-        bodyMedium: GoogleFonts.cairo(
+        bodyMedium: GoogleFonts.roboto(
           fontSize: 14,
           fontWeight: FontWeight.normal,
           color: Colors.white,
@@ -386,4 +448,6 @@ class ThemeConfig {
       ),
     );
   }
+}
+*/
 }

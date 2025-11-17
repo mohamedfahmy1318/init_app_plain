@@ -1,4 +1,7 @@
 import 'package:Bynona/core/router/routes_name.dart';
+import 'package:Bynona/features/splash&onBoarding/presentation/pages/on_boarding_page.dart';
+import 'package:Bynona/features/splash&onBoarding/presentation/pages/select_auth_page.dart';
+import 'package:Bynona/features/splash&onBoarding/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../pages/map_demo/map_demo_page.dart';
@@ -9,7 +12,7 @@ class AppRouter {
 
   // ==================== Router Configuration ====================
   static final GoRouter router = GoRouter(
-    initialLocation: RoutesName.coreDemo,
+    initialLocation: RoutesName.splash,
     debugLogDiagnostics: true,
     errorBuilder: (context, state) => _ErrorScreen(error: state.error),
     routes: [
@@ -28,19 +31,24 @@ class AppRouter {
       ),
 
       // ==================== Splash Screen ====================
-
-      /*GoRoute(
-        path:  RoutesName.splash,
+      GoRoute(
+        path: RoutesName.splash,
         name: 'splash',
+
         builder: (context, state) => const SplashPage(),
-      ),*/
+      ),
 
       // ==================== Onboarding Screen ====================
       GoRoute(
         path: RoutesName.onboarding,
         name: 'onboarding',
-        builder: (context, state) =>
-            const Scaffold(body: Center(child: Text('Onboarding Screen'))),
+        builder: (context, state) => const OnBoardingPage(),
+      ),
+      // ==================== Select Auth Screen ====================
+      GoRoute(
+        path: RoutesName.selectAuth,
+        name: 'selectAuth',
+        builder: (context, state) => const SelectAuthPage(),
       ),
 
       // ==================== Auth Routes ====================

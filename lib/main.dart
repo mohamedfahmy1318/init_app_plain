@@ -46,7 +46,7 @@ void main() async {
   await setupServiceLocator();
 
   // Setup Hive
-  LoggerHelper.info('💾 Initializing Hive...');
+  //LoggerHelper.info('💾 Initializing Hive...');
 
   // Setup localization
   await EasyLocalization.ensureInitialized();
@@ -55,7 +55,7 @@ void main() async {
   Bloc.observer = AppBlocObserver();
 
   // ==================== Run App ====================
-  LoggerHelper.info('✅ App initialization completed successfully!');
+  //LoggerHelper.info('✅ App initialization completed successfully!');
 
   runApp(
     EasyLocalization(
@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           // ==================== App Info ====================
           title: AppConfig.appName,
-          debugShowCheckedModeBanner: AppConfig.showDebugBanner,
+          debugShowCheckedModeBanner: false,
 
           // ==================== Localization ====================
           localizationsDelegates: context.localizationDelegates,
@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
 
           // ==================== Theme ====================
           theme: ThemeConfig.lightTheme,
-          darkTheme: ThemeConfig.darkTheme,
+          //darkTheme: ThemeConfig.darkTheme,
           themeMode: ThemeMode.light, // TODO: Make this dynamic
           // ==================== Routing ====================
           routerConfig: AppRouter.router,
