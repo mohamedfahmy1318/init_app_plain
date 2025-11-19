@@ -58,12 +58,22 @@ class SelectAuthPage extends StatelessWidget {
                       textColor: Colors.white,
                       onPressed: () {
                         // Navigate to login page
+                        AppRouter.replaceNamed(
+                          context,
+                          'authScreen',
+                          extra: {'startWithLogin': true},
+                        );
                       },
                     ),
                     SizedBox(height: 16.h),
                     OutlinedButton(
                       onPressed: () {
                         // Navigate to sign up page
+                        AppRouter.replaceNamed(
+                          context,
+                          'authScreen',
+                          extra: {'startWithLogin': false},
+                        );
                       },
                       child: Text('إنشاء حساب جديد'),
                     ),

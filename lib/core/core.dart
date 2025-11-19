@@ -71,6 +71,5 @@ export 'widgets/custom_search_bar.dart';
 export 'widgets/cached_image_widget.dart';
 export 'widgets/network_aware_widget.dart';
 export 'widgets/pagination_list_view.dart';
-export 'widgets/form_builder_widget.dart';
 export 'widgets/shimmer_loading.dart';
 export 'widgets/rating_widget.dart';

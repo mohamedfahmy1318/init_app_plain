@@ -1,4 +1,5 @@
 import 'package:Bynona/core/router/routes_name.dart';
+import 'package:Bynona/features/auth/presentation/pages/auth_page.dart';
 import 'package:Bynona/features/splash&onBoarding/presentation/pages/on_boarding_page.dart';
 import 'package:Bynona/features/splash&onBoarding/presentation/pages/select_auth_page.dart';
 import 'package:Bynona/features/splash&onBoarding/presentation/pages/splash_page.dart';
@@ -51,12 +52,16 @@ class AppRouter {
         builder: (context, state) => const SelectAuthPage(),
       ),
 
-      // ==================== Auth Routes ====================
-      /*GoRoute(
-        path:  RoutesName.login,
-        name: 'login',
-        builder: (context, state) => const LoginPage(),
-      ),*/
+      // ==================== Auth Screen ====================
+      GoRoute(
+        path: RoutesName.authScreen,
+        name: 'authScreen',
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          final startWithLogin = extra?['startWithLogin'] as bool? ?? true;
+          return AuthScreen(startWithLogin: startWithLogin);
+        },
+      ),
       GoRoute(
         path: RoutesName.register,
         name: 'register',
@@ -145,6 +150,21 @@ class AppRouter {
     Object? extra,
   }) {
     context.pushNamed(
+      name,
+      pathParameters: pathParameters,
+      queryParameters: queryParameters,
+      extra: extra,
+    );
+  }
+
+  static void replaceNamed(
+    BuildContext context,
+    String name, {
+    Map<String, String> pathParameters = const {},
+    Map<String, dynamic> queryParameters = const {},
+    Object? extra,
+  }) {
+    context.replaceNamed(
       name,
       pathParameters: pathParameters,
       queryParameters: queryParameters,

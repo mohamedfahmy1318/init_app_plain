@@ -3,6 +3,7 @@ class RoutesName {
   // ==================== Route Names ====================
   static const String splash = '/';
   static const String selectAuth = '/select-auth';
+  static const String authScreen = '/auth-screen';
   static const String coreDemo = '/core-demo';
   static const String mapDemo = '/map-demo';
   static const String chartsDemo = '/charts-demo';

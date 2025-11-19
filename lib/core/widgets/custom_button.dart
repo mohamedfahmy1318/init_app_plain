@@ -33,12 +33,14 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final child = isLoading
-        ? const SizedBox(
+        ? SizedBox(
             height: 20,
             width: 20,
             child: CircularProgressIndicator(
-              strokeWidth: 2,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              strokeWidth: 2.5,
+              valueColor: AlwaysStoppedAnimation<Color>(
+                isOutlined ? Theme.of(context).primaryColor : Colors.white,
+              ),
             ),
           )
         : Row(
@@ -47,7 +49,12 @@ class CustomButton extends StatelessWidget {
             children: [
               if (icon != null) ...[icon!, const SizedBox(width: 8)],
               Flexible(
-                child: Text(text, overflow: TextOverflow.ellipsis, maxLines: 1),
+                child: Text(
+                  text,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           );
@@ -55,10 +62,19 @@ class CustomButton extends StatelessWidget {
     if (isOutlined) {
       return SizedBox(
         width: width,
-        height: height,
+        height: height ?? 50,
         child: OutlinedButton(
           onPressed: isLoading ? null : onPressed,
-          style: OutlinedButton.styleFrom(foregroundColor: textColor),
+          style: OutlinedButton.styleFrom(
+            foregroundColor: textColor ?? Theme.of(context).primaryColor,
+            side: BorderSide(
+              color: textColor ?? Theme.of(context).primaryColor,
+              width: 1.5,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
           child: child,
         ),
       );
@@ -66,12 +82,17 @@ class CustomButton extends StatelessWidget {
 
     return SizedBox(
       width: width,
-      height: height,
+      height: height ?? 50,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: textColor,
+          backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
+          foregroundColor: textColor ?? Colors.white,
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
         child: child,
       ),
