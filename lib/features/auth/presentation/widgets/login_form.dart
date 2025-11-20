@@ -1,5 +1,7 @@
 import 'package:Bynona/core/config/app_colors.dart';
 import 'package:Bynona/core/config/app_text_styles.dart';
+import 'package:Bynona/core/router/app_router.dart';
+import 'package:Bynona/core/router/routes_name.dart';
 import 'package:Bynona/core/widgets/custom_button.dart';
 import 'package:Bynona/core/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +60,10 @@ class _LoginFormState extends State<LoginForm> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigate to forgot password screen
+                    AppRouter.push(context, RoutesName.forgotPassword);
+                  },
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
                     minimumSize: Size.zero,
@@ -66,7 +71,7 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                   child: Text(
                     'هل نسيت كلمة المرور؟',
-                    style: TextStyle(color: Colors.grey[500], fontSize: 13),
+                    style: TextStyle(color: Colors.grey[500], fontSize: 14.sp),
                   ),
                 ),
               ),
@@ -83,7 +88,13 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 SizedBox(width: 12.w),
                 Expanded(
-                  child: CustomButton(text: 'تسجيل الدخول', onPressed: () {}),
+                  child: CustomButton(
+                    text: 'تسجيل الدخول',
+                    onPressed: () {
+                      // Handle login action
+                      AppRouter.replace(context, RoutesName.wholesaleAndRetail);
+                    },
+                  ),
                 ),
               ],
             ),

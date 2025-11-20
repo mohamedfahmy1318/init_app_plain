@@ -4,6 +4,7 @@ class RoutesName {
   static const String splash = '/';
   static const String selectAuth = '/select-auth';
   static const String authScreen = '/auth-screen';
+  static const String wholesaleAndRetail = '/wholesale-and-retail';
   static const String coreDemo = '/core-demo';
   static const String mapDemo = '/map-demo';
   static const String chartsDemo = '/charts-demo';

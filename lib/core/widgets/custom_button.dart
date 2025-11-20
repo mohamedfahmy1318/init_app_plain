@@ -5,6 +5,7 @@
 /// ========================================================
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -53,7 +54,10 @@ class CustomButton extends StatelessWidget {
                   text,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 17.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],
@@ -69,7 +73,7 @@ class CustomButton extends StatelessWidget {
             foregroundColor: textColor ?? Theme.of(context).primaryColor,
             side: BorderSide(
               color: textColor ?? Theme.of(context).primaryColor,
-              width: 1.5,
+              width: .3,
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),

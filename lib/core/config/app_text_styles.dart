@@ -27,6 +27,12 @@ class AppTextStyles {
     color: AppColors.textSecondary,
     fontFamily: primaryFont,
   );
+  static TextStyle font16DarkBlueSemiBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textThird,
+    fontFamily: primaryFont,
+  );
 
   // ==================== 14pt Styles ====================
   static TextStyle font14DarkBlueMedium = TextStyle(

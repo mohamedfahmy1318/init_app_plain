@@ -1,5 +1,8 @@
 import 'package:Bynona/core/router/routes_name.dart';
+import 'package:Bynona/features/Wholesale&retail/presentation/pages/wholesale_retail_page.dart';
 import 'package:Bynona/features/auth/presentation/pages/auth_page.dart';
+import 'package:Bynona/features/auth/presentation/pages/forget_password.dart';
+import 'package:Bynona/features/main/presentation/pages/main_page.dart';
 import 'package:Bynona/features/splash&onBoarding/presentation/pages/on_boarding_page.dart';
 import 'package:Bynona/features/splash&onBoarding/presentation/pages/select_auth_page.dart';
 import 'package:Bynona/features/splash&onBoarding/presentation/pages/splash_page.dart';
@@ -13,7 +16,7 @@ class AppRouter {
 
   // ==================== Router Configuration ====================
   static final GoRouter router = GoRouter(
-    initialLocation: RoutesName.splash,
+    initialLocation: RoutesName.main,
     debugLogDiagnostics: true,
     errorBuilder: (context, state) => _ErrorScreen(error: state.error),
     routes: [
@@ -72,8 +75,7 @@ class AppRouter {
       GoRoute(
         path: RoutesName.forgotPassword,
         name: 'forgotPassword',
-        builder: (context, state) =>
-            const Scaffold(body: Center(child: Text('Forgot Password Screen'))),
+        builder: (context, state) => const ForgetPasswordPage(),
       ),
 
       GoRoute(
@@ -86,13 +88,18 @@ class AppRouter {
           );
         },
       ),
-
+      // ==================== wholesaleAndRetail Screen ====================
+      GoRoute(
+        path: RoutesName.wholesaleAndRetail,
+        name: 'wholesaleAndRetail',
+        builder: (context, state) => const WholesaleAndRetailPage(),
+      ),
       // ==================== Main Routes ====================
-      /*GoRoute(
-        path:  RoutesName.home,
-        name: 'home',
-        builder: (context, state) => const HomePage(),
-      ),*/
+      GoRoute(
+        path: RoutesName.main,
+        name: 'main',
+        builder: (context, state) => const MainPage(),
+      ),
       GoRoute(
         path: RoutesName.settings,
         name: 'settings',
