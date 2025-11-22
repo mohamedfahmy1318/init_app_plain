@@ -2,6 +2,8 @@ import 'package:Bynona/core/router/routes_name.dart';
 import 'package:Bynona/features/Wholesale&retail/presentation/pages/wholesale_retail_page.dart';
 import 'package:Bynona/features/auth/presentation/pages/auth_page.dart';
 import 'package:Bynona/features/auth/presentation/pages/forget_password.dart';
+import 'package:Bynona/features/categories/presentation/pages/category_details.dart';
+import 'package:Bynona/features/categories/presentation/pages/category_type.dart';
 import 'package:Bynona/features/main/presentation/pages/main_page.dart';
 import 'package:Bynona/features/splash&onBoarding/presentation/pages/on_boarding_page.dart';
 import 'package:Bynona/features/splash&onBoarding/presentation/pages/select_auth_page.dart';
@@ -16,7 +18,7 @@ class AppRouter {
 
   // ==================== Router Configuration ====================
   static final GoRouter router = GoRouter(
-    initialLocation: RoutesName.main,
+    initialLocation: RoutesName.splash,
     debugLogDiagnostics: true,
     errorBuilder: (context, state) => _ErrorScreen(error: state.error),
     routes: [
@@ -105,6 +107,18 @@ class AppRouter {
         name: 'settings',
         builder: (context, state) =>
             const Scaffold(body: Center(child: Text('Settings Screen'))),
+      ),
+      // ==================== Category Type  ====================
+      GoRoute(
+        path: RoutesName.categoryType,
+        name: 'categoryType',
+        builder: (context, state) => const CategoryType(),
+      ),
+      // ==================== Category Details  ====================
+      GoRoute(
+        path: RoutesName.categoryDetails,
+        name: 'categoryDetails',
+        builder: (context, state) => const CategoryDetails(),
       ),
 
       // ==================== Not Found ====================

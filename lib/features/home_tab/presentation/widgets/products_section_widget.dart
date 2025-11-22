@@ -2,49 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'product_card_widget.dart';
 
-/// Products Section Widget
-/// Widget لعرض قسم المنتجات مع horizontal scroll
 class ProductsSectionWidget extends StatelessWidget {
   final String title;
-  final List<ProductItemData>? products;
   final VoidCallback? onViewAllPressed;
 
   const ProductsSectionWidget({
     super.key,
     this.title = 'وصل حديثاً',
-    this.products,
     this.onViewAllPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    final defaultProducts = List.generate(
-      6,
-      (index) => ProductItemData(
-        id: index.toString(),
-        title: 'سماعة بلوتوث عازلة للصوضاء',
-        description: 'بطارية تدوم 20 ساعة وجودة صوت نقية',
-        price: 348,
-        oldPrice: 400,
-        discountPercentage: 10,
-        isFavorite: false,
-        onTap: () {
-          // Navigate to product details
-          debugPrint('Product tapped: $index');
-        },
-        onAddToCart: () {
-          //  Add to cart
-          debugPrint('Add to cart: $index');
-        },
-        onFavoriteTap: () {
-          //  Toggle favorite
-          debugPrint('Toggle favorite: $index');
-        },
-      ),
-    );
-
-    final displayProducts = products ?? defaultProducts;
-
     return Column(
       children: [
         // Section Header
@@ -58,12 +27,12 @@ class ProductsSectionWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             reverse: true,
             padding: EdgeInsets.symmetric(horizontal: 12.w),
-            itemCount: displayProducts.length,
+            itemCount: 5,
             itemBuilder: (context, index) {
               return Container(
                 width: 180.w,
                 margin: EdgeInsets.only(left: 12.w),
-                child: ProductCardWidget(product: displayProducts[index]),
+                child: ProductCardWidget(),
               );
             },
           ),

@@ -2,6 +2,7 @@ import 'package:Bynona/core/config/app_colors.dart';
 import 'package:Bynona/core/config/app_text_styles.dart';
 import 'package:Bynona/core/constants/app_images.dart';
 import 'package:Bynona/core/core.dart';
+import 'package:Bynona/core/router/routes_name.dart';
 import 'package:Bynona/core/utils/utils.dart';
 import 'package:Bynona/core/widgets/images/custom_assets_image.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,9 @@ class WholesaleAndRetailPage extends StatelessWidget {
             Spacer(),
             CustomButton(
               text: ' استمرار',
-              onPressed: () {},
+              onPressed: () {
+                AppRouter.replace(context, RoutesName.main);
+              },
               backgroundColor: AppColors.primary,
             ),
             SizedBox(height: 60.h),

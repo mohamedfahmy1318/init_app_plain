@@ -18,6 +18,8 @@ class AppImages {
   static const String category2 = '$imagesPath/category2.jpg';
   static const String category3 = '$imagesPath/category3.jpg';
   static const String category4 = '$imagesPath/category4.jpg';
+  static const String mobiles = '$imagesPath/mobiles.jpg';
+  static const String iphone = '$imagesPath/iphone.jpg';
   static const String nowImg = '$imagesPath/now.jpg';
   // ==================== SVG Images ====================
   static const String appLogo = '$svgPath/app_logo.svg';
